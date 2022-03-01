@@ -1,0 +1,9 @@
+<div class="card_container">
+  <mat-card class="card">
+    <mat-card-title>Tem certeza que deseja concluir a task de número {{ id }}?</mat-card-title>
+    <div class="buttons">
+      <button mat-raised-button class="delete" (click)="updateProduct()"> Concluir </button>
+      <button mat-raised-button class="cancel" color="primary" (click)="cancel()"> Cancelar </button>
+    </div>
+  </mat-card>
+</div>

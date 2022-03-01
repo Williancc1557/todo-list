@@ -1,0 +1,27 @@
+form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+.title {
+  text-align: center;
+}
+.name {
+  margin-top: 2rem;
+}
+input {
+  font-size: 1.2rem;
+  height: 2rem;
+}
+button {
+  width: 10rem;
+  margin-right: 15px;
+  margin-top: 15px;
+}
+
+.card-container {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
