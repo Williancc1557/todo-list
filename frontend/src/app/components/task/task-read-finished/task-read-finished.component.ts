@@ -10,7 +10,6 @@ import { Task } from '../../task.model';
 })
 export class TaskReadFinishedComponent implements OnInit {
   public tasks: Array<Task> = []
-  public displayedColumns = ["id", "name", "actions"]
 
   constructor(
     private taskService: TaskService,
@@ -23,8 +22,8 @@ export class TaskReadFinishedComponent implements OnInit {
     })
   }
 
-  public reloadTask(id: string) {
-    this.taskService.update({ id: Number(id), finished: false }).subscribe(() => {
+  public reloadTask(id: number) {
+    this.taskService.update({ id, finished: false }).subscribe(() => {
       this.taskService.showMessage("A tarefa foi reinserida na sua lista de tarefas!")
     })
   }

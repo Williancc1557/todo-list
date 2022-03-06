@@ -10,7 +10,6 @@ import { TaskService } from '../../task.service';
 export class TaskReadComponent implements OnInit {
 
   public tasks: Array<Task> = []
-  public displayedColumns = ["id", "name", "actions"]
 
   constructor(
     private taskService: TaskService

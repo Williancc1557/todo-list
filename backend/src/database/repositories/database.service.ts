@@ -26,6 +26,7 @@ export class DatabaseOrm {
             id,
             finished: data.finished || false,
         });
+        console.log(database)
     }
 
     public findAll(): Array<ItemEntity> {

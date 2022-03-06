@@ -20,7 +20,17 @@ export class TaskCreateComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  private validateName() {
+    const task = this.task.name!
+
+    return task.length < 40 && task != ""
+  }
+
   public createTask(): void {
+    if (!this.validateName()) {
+      return this.taskService.showMessage("O nome da tarefa está inválido")
+    }
+
     this.taskService.create(this.task).subscribe(() => {
       this.taskService.showMessage("Tarefa criada!")
       this.router.navigate([""])
