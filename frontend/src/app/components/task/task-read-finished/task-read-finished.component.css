@@ -4,7 +4,7 @@ ul {
   display: flex;
   margin: 0;
   width: 100%;
-  gap: 3rem;
+  gap: 2rem;
 }
 
 .center-table {
@@ -16,7 +16,7 @@ ul {
 }
 
 li {
-  width: 3rem;
+  width: 5rem;
   align-items: center;
   justify-content: center;
   display: inline-flex;
@@ -61,7 +61,6 @@ li {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  width: 3rem; /* some width */
 }
 
 .reload > i {
