@@ -6,26 +6,26 @@
       <li>Ações</li>
     </ul>
 
-    <ul class="item" *ngFor="let task of tasks" [style.background]="task.id == 5 ? 'red' : '' ">
-      <li class="item-id">
+    <ul
+      class="item"
+      *ngFor="let task of tasks"
+      [style.background]="task.id == 5 ? 'red' : ''"
+    >
+      <li class="item-id" title="aaa">
         {{ task.id }}
       </li>
 
-      <li class="item-name" *ngIf="task.id != 5;else isFive">
+      <li class="item-name" *ngIf="task.id != 5; else isFive">
         {{ task.name }}
       </li>
 
       <ng-template #isFive>
-        <li class="item-name">
-          house
-        </li>
+        <li class="item-name">house</li>
       </ng-template>
 
       <li>
         <a routerLink="change/{{ task.id }}" class="content">
-          <i class="material-icons" title="abrir a tarefa">
-            sort
-          </i>
+          <i class="material-icons" title="abrir a tarefa"> sort </i>
         </a>
 
         <a routerLink="finish/{{ task.id }}" class="done">
@@ -35,12 +35,9 @@
         </a>
 
         <a routerLink="cancel/{{ task.id }}" class="delete">
-          <i class="material-icons" title="cancelar">
-            close
-          </i>
+          <i class="material-icons" title="cancelar"> close </i>
         </a>
       </li>
     </ul>
   </div>
 </div>
-

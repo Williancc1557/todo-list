@@ -7,8 +7,3 @@ export interface Task {
 
   finished?: boolean;
 }
-
-export interface RequestResponse {
-  statusCode: number;
-  body: Array<Task>
-}

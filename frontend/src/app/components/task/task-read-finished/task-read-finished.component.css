@@ -56,6 +56,14 @@ li {
   overflow-wrap: break-word;
 }
 
+.item-id {
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 3rem; /* some width */
+}
+
 .reload > i {
   color: black;
   margin-right: 20px;

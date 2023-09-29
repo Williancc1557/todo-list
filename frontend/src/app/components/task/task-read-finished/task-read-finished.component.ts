@@ -6,25 +6,26 @@ import { Task } from '../../task.model';
 @Component({
   selector: 'app-task-read-finished',
   templateUrl: './task-read-finished.component.html',
-  styleUrls: ['./task-read-finished.component.css']
+  styleUrls: ['./task-read-finished.component.css'],
 })
 export class TaskReadFinishedComponent implements OnInit {
-  public tasks: Array<Task> = []
+  public tasks: Array<Task> = [];
 
-  constructor(
-    private taskService: TaskService,
-    private router: Router,
-  ) { }
+  constructor(private taskService: TaskService, private router: Router) {}
 
   ngOnInit(): void {
-  this.taskService.readNotChecked().subscribe(tasks => {
-      this.tasks = tasks.body
-    })
+    this.taskService.readNotChecked().subscribe((tasks) => {
+      console.log(tasks);
+
+      this.tasks = tasks;
+    });
   }
 
   public reloadTask(id: number) {
     this.taskService.update({ id, finished: false }).subscribe(() => {
-      this.taskService.showMessage("A tarefa foi reinserida na sua lista de tarefas!")
-    })
+      this.taskService.showMessage(
+        'A tarefa foi reinserida na sua lista de tarefas!'
+      );
+    });
   }
 }
