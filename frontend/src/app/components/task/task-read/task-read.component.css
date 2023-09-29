@@ -81,9 +81,20 @@ li {
   overflow: hidden;
 }
 
-.reload > i {
+.done > i {
+  color: rgb(82, 255, 82);
+  margin-right: 15px;
+  border-radius: 10px;
+}
+
+.content > i {
   color: black;
   margin-right: 20px;
+  border-radius: 10px;
+}
+
+.delete > i {
+  color: #e35e6b;
   border-radius: 10px;
 }
 
@@ -91,9 +102,4 @@ li {
   color: white;
   background-color: #555;
   transition: 0.4s;
-}
-
-.delete > i {
-  color: #e35e6b;
-  border-radius: 10px;
 }

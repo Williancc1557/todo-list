@@ -15,13 +15,11 @@ export class TaskReadFinishedComponent implements OnInit {
 
   ngOnInit(): void {
     this.taskService.readNotChecked().subscribe((tasks) => {
-      console.log(tasks);
-
       this.tasks = tasks;
     });
   }
 
-  public reloadTask(id: number) {
+  public reloadTask(id: string) {
     this.taskService.update({ id, finished: false }).subscribe(() => {
       this.taskService.showMessage(
         'A tarefa foi reinserida na sua lista de tarefas!'

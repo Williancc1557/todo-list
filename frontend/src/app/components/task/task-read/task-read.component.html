@@ -6,16 +6,12 @@
       <li>Ações</li>
     </ul>
 
-    <ul
-      class="item"
-      *ngFor="let task of tasks"
-      [style.background]="task.id == 5 ? 'red' : ''"
-    >
+    <ul class="item" *ngFor="let task of tasks">
       <li class="item-id">
         {{ task.id }}
       </li>
 
-      <li class="item-name" *ngIf="task.id != 5; else isFive">
+      <li class="item-name">
         {{ task.name }}
       </li>
 
