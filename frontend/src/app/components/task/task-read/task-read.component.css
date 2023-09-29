@@ -3,7 +3,8 @@ ul {
   list-style: none;
   display: flex;
   margin: 0;
-  gap: 3rem;
+  width: 100%;
+  gap: 2rem;
 }
 
 .center-table {
@@ -14,8 +15,26 @@ ul {
   height: 70vh;
 }
 
+.table-tasks-container::-webkit-scrollbar {
+  width: 10px; /* Largura da scrollbar */
+}
+
+.table-tasks-container::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Cor de fundo do trilho */
+}
+
+/* Estilizando o "polegar" (thumb) da scrollbar */
+.table-tasks-container::-webkit-scrollbar-thumb {
+  background: #888; /* Cor do polegar */
+}
+
+/* Estilizando o "polegar" (thumb) da scrollbar quando hover */
+.table-tasks-container::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Cor do polegar quando hover */
+}
+
 li {
-  width: 3rem;
+  width: 5rem;
   align-items: center;
   justify-content: center;
   display: inline-flex;
@@ -55,16 +74,26 @@ li {
   overflow-wrap: break-word;
 }
 
-.done > i {
-  color: rgb(82, 255, 82);
-  margin-right: 15px;
+.item-id {
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-.content > i {
+.reload > i {
   color: black;
   margin-right: 20px;
+  border-radius: 10px;
+}
+
+.actions-icons i:hover {
+  color: white;
+  background-color: #555;
+  transition: 0.4s;
 }
 
 .delete > i {
   color: #e35e6b;
+  border-radius: 10px;
 }

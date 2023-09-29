@@ -6,32 +6,32 @@
       <li>Ações</li>
     </ul>
 
-    <ul class="item" *ngFor="let task of tasks" [style.background]="task.id == 5 ? 'red' : '' ">
+    <ul
+      class="item"
+      *ngFor="let task of tasks"
+      [style.background]="task.id == 5 ? 'red' : ''"
+    >
       <li class="item-id">
         {{ task.id }}
       </li>
 
-      <li class="item-name" *ngIf="task.id != 5;else isFive">
+      <li class="item-name" *ngIf="task.id != 5; else isFive">
         {{ task.name }}
       </li>
 
       <ng-template #isFive>
-        <li class="item-name">
-          house
-        </li>
+        <li class="item-name">house</li>
       </ng-template>
 
-      <li>
-        <a routerLink="" (click)="reloadTask( task.id! )" class="reload">
+      <li class="actions-icons">
+        <a routerLink="" (click)="reloadTask(task.id!)" class="reload">
           <i class="material-icons" title="Marcar como não concluida">
             autorenew
           </i>
         </a>
 
         <a routerLink="../cancel/{{ task.id }}" class="delete">
-          <i class="material-icons" title="Deletar">
-            close
-          </i>
+          <i class="material-icons" title="Deletar"> close </i>
         </a>
       </li>
     </ul>
