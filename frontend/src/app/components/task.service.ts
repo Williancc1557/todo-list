@@ -36,7 +36,9 @@ export class TaskService {
   }
 
   update(task: Task): Observable<Task> {
-    return this.http.put<Task>(this.baseUrl + '/change', task);
+    const { id, ...taskWithoutId } = task;
+
+    return this.http.put<Task>(this.baseUrl + `/update/${id}`, taskWithoutId);
   }
 
   delete(id: string): Observable<void> {
