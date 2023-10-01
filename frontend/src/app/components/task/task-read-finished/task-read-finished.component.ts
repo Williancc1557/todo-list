@@ -14,7 +14,7 @@ export class TaskReadFinishedComponent implements OnInit {
   constructor(private taskService: TaskService, private router: Router) {}
 
   ngOnInit(): void {
-    this.taskService.readNotChecked().subscribe((tasks) => {
+    this.taskService.readChecked().subscribe((tasks) => {
       this.tasks = tasks;
     });
   }

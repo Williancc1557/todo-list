@@ -13,7 +13,7 @@ export class TaskReadComponent implements OnInit {
   constructor(private taskService: TaskService) {}
 
   ngOnInit(): void {
-    this.taskService.readChecked().subscribe((tasks) => {
+    this.taskService.readNotChecked().subscribe((tasks) => {
       this.tasks = tasks;
     });
   }
