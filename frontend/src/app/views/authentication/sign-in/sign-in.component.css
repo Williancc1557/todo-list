@@ -131,7 +131,7 @@ form .submit:hover {
   background-color: rgb(54, 54, 253);
 }
 
-@media (max-width: 950px) {
+@media (max-width: 1236px) {
   .login-container h1 {
     width: 70%;
     font-size: 2rem;

@@ -46,14 +46,14 @@
   font-weight: 400;
 }
 
-@media (max-width: 1325px) {
+@media (max-width: 1690px) {
   .c2 {
-    font-size: 5rem;
+    font-size: 6rem;
   }
 
-  @media (max-width: 1150px) {
+  @media (max-width: 1480px) {
     .c2 {
-      font-size: 3.5rem;
+      font-size: 5rem;
     }
   }
 }
