@@ -1,8 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Task } from './task.model';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Task } from '../components/task.model';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+
+type snackBarErrorTypes = 'internalError' | 'inputUndefined';
+
+interface SnackBarErrorInput {
+  msg?: string;
+  type?: snackBarErrorTypes;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +28,37 @@ export class TaskService {
       horizontalPosition: 'right',
       verticalPosition: 'top',
     });
+  }
+
+  showSnackBarSucess(msg: string) {
+    return this.snackBar.open(msg, 'x', {
+      duration: 4000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      panelClass: 'snack-bar-sucess',
+    });
+  }
+
+  public showSnackBarError({ type, msg }: SnackBarErrorInput) {
+    const snackBarConfig: MatSnackBarConfig<any> = {
+      duration: 4000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      panelClass: ['snack-bar-error'],
+    };
+
+    let messageWithType: string | undefined;
+
+    switch (type) {
+      case 'inputUndefined':
+        messageWithType = 'Preencha todos os campos!';
+        break;
+      case 'internalError':
+        messageWithType = 'Ocorreu algum erro, tente novamente mais tarde!';
+        break;
+    }
+
+    return this.snackBar.open(messageWithType || msg!, 'x', snackBarConfig);
   }
 
   create(task: Task): Observable<Task> {
