@@ -12,10 +12,11 @@ import { AppComponent } from './app.component';
 import { AuthComponent } from './views/authentication/auth.component';
 import { TodoListComponent } from './views/todo.component';
 import { HomeGuard } from './services/home.guard';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: TodoListComponent,
     children: [
       {
@@ -46,7 +47,7 @@ const routes: Routes = [
     canActivate: [HomeGuard],
   },
   {
-    path: '',
+    path: 'auth',
     component: AuthComponent,
     children: [
       {
@@ -54,14 +55,19 @@ const routes: Routes = [
         component: AuthComponent,
       },
       {
-        path: 'auth/sign-in',
+        path: 'sign-in',
         component: SignInComponent,
       },
       {
-        path: 'auth/sign-up',
+        path: 'sign-up',
         component: SignUpComponent,
       },
     ],
+    canActivate: [AuthGuard],
+  },
+  {
+    path: '**',
+    redirectTo: 'home',
   },
 ];
 
