@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UtilsService } from 'src/app/services/utils.service';
 import { UserParamsDto } from 'src/app/models/user.dto';
+import { SignInInputDto } from 'src/app/models/sign-in.dto';
 
 @Component({
   selector: 'app-sign-in',
@@ -9,7 +10,7 @@ import { UserParamsDto } from 'src/app/models/user.dto';
   styleUrls: ['./sign-in.component.css'],
 })
 export class SignInComponent implements OnInit {
-  user: UserParamsDto = {
+  user: SignInInputDto = {
     email: '',
     password: '',
   };
@@ -24,10 +25,7 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {}
 
   isNullInput(): boolean {
-    if (this.user.email == '' || this.user.password == '') {
-      return true;
-    }
-    return false;
+    return this.user.email == '' || this.user.password == '';
   }
 
   submit() {}

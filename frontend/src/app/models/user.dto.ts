@@ -1,22 +1,21 @@
 export interface UserDto {
-  statusCode: number,
+  statusCode: number;
   body: {
-    id: number,
-    password: string,
+    id: number;
+    password: string;
     contact: {
-      id: number,
-      email: string,
+      id: number;
+      email: string;
       verifyEmail: {
-        id: number,
-        isVerified: boolean,
-        confirmationToken: number
-      }
-    }
-  }
+        id: number;
+        isVerified: boolean;
+        confirmationToken: number;
+      };
+    };
+  };
 }
 
-
 export interface UserParamsDto {
-  email: string,
-  password: string
+  email: string;
+  password: string;
 }
