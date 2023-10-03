@@ -13,7 +13,7 @@
 }
 
 .c2 {
-  font-size: 5rem;
+  font-size: 7rem;
 }
 
 .c2 .text-wrapper {
@@ -39,10 +39,11 @@
   left: 0;
 }
 
-.c2 .letter {
+.c2 .letters {
   display: inline-block;
   line-height: 1em;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Roboto";
+  font-weight: 400;
 }
 
 @media (max-width: 1325px) {
