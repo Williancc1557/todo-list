@@ -8,39 +8,60 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SignInComponent } from './views/authentication/sign-in/sign-in.component';
 import { SignUpComponent } from './views/authentication/sign-up/sign-up.component';
+import { AppComponent } from './app.component';
+import { AuthComponent } from './views/authentication/auth.component';
+import { TodoListComponent } from './views/todo.component';
+import { HomeGuard } from './services/home.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: TodoCrudComponent,
+    component: TodoListComponent,
+    children: [
+      {
+        path: '',
+        component: TodoCrudComponent,
+      },
+      {
+        path: 'finished',
+        component: TodoFinishedComponent,
+      },
+      {
+        path: 'change/:id',
+        component: TaskChangeComponent,
+      },
+      {
+        path: 'cancel/:id',
+        component: TaskCancelComponent,
+      },
+      {
+        path: 'finish/:id',
+        component: TaskFinishComponent,
+      },
+      {
+        path: 'create',
+        component: TaskCreateComponent,
+      },
+    ],
+    canActivate: [HomeGuard],
   },
   {
-    path: 'finished',
-    component: TodoFinishedComponent,
-  },
-  {
-    path: 'change/:id',
-    component: TaskChangeComponent,
-  },
-  {
-    path: 'cancel/:id',
-    component: TaskCancelComponent,
-  },
-  {
-    path: 'finish/:id',
-    component: TaskFinishComponent,
-  },
-  {
-    path: 'create',
-    component: TaskCreateComponent,
-  },
-  {
-    path: 'auth/sign-in',
-    component: SignInComponent,
-  },
-  {
-    path: 'auth/sign-up',
-    component: SignUpComponent,
+    path: '',
+    component: AuthComponent,
+    children: [
+      {
+        path: '',
+        component: AuthComponent,
+      },
+      {
+        path: 'auth/sign-in',
+        component: SignInComponent,
+      },
+      {
+        path: 'auth/sign-up',
+        component: SignUpComponent,
+      },
+    ],
   },
 ];
 

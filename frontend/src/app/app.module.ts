@@ -26,10 +26,13 @@ import { TitleAnimatedComponent } from './components/authentication/title/title-
 import { SignInComponent } from './views/authentication/sign-in/sign-in.component';
 import { SignUpComponent } from './views/authentication/sign-up/sign-up.component';
 import { LoadComponent } from './components/load/load.component';
+import { AuthComponent } from './views/authentication/auth.component';
+import { TodoListComponent } from './views/todo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AuthComponent,
     HeaderComponent,
     TodoCrudComponent,
     TaskReadComponent,
@@ -43,6 +46,7 @@ import { LoadComponent } from './components/load/load.component';
     SignInComponent,
     SignUpComponent,
     LoadComponent,
+    TodoListComponent,
   ],
   imports: [
     BrowserModule,
