@@ -4,18 +4,14 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-todo-finished',
   templateUrl: './todo-finished.component.html',
-  styleUrls: ['./todo-finished.component.css']
+  styleUrls: ['./todo-finished.component.css'],
 })
 export class TodoFinishedComponent implements OnInit {
+  constructor(private readonly router: Router) {}
 
-  constructor(
-    private readonly router: Router
-  ) { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   navigateToHome() {
-    this.router.navigate([""])
+    this.router.navigate(['/home']);
   }
 }
