@@ -6,10 +6,11 @@ import {
   HttpEvent,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, throwError, empty } from 'rxjs';
+import { catchError, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
+import { RefreshTokenOutputDto } from '../models/refreshtoken.dto';
 
 @Injectable()
 export class RequestsInterceptor implements HttpInterceptor {
@@ -32,32 +33,41 @@ export class RequestsInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         switch (error.status) {
           case 401:
-            this.unauthorizedError(next, req);
-            break;
+            return this.handleUnauthorizedError(req, next);
+          default:
+            return throwError(() => error);
         }
-
-        return throwError(() => error);
       })
     );
   }
 
-  private unauthorizedError(next: HttpHandler, req: HttpRequest<any>) {
+  private handleUnauthorizedError(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
     const refreshtoken = localStorage.getItem('refreshtoken');
     if (!refreshtoken) {
       this.router.navigate(['/auth/sign-in']);
-      return;
+      return empty();
     }
 
-    this.authService.refreshToken(refreshtoken).subscribe({
-      next: (value) => {
-        localStorage.setItem('accesstoken', value.accessToken);
-        next.handle(req);
-      },
-      error: () => {
+    return this.authService.refreshToken(refreshtoken).pipe(
+      switchMap((newToken: RefreshTokenOutputDto) => {
+        localStorage.setItem('accesstoken', newToken.accessToken);
+        return next.handle(
+          req.clone({
+            setHeaders: {
+              accesstoken: newToken.accessToken,
+            },
+          })
+        );
+      }),
+      catchError(() => {
         localStorage.removeItem('accesstoken');
         localStorage.removeItem('refreshtoken');
         this.router.navigate(['/auth/sign-in']);
-      },
-    });
+        return empty();
+      })
+    );
   }
 }
