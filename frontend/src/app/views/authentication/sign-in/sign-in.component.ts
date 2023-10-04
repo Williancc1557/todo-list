@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UtilsService } from 'src/app/services/utils.service';
 import { UserParamsDto } from 'src/app/models/user.dto';
 import { SignInInputDto } from 'src/app/models/sign-in.dto';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -19,7 +20,8 @@ export class SignInComponent implements OnInit {
 
   public constructor(
     private readonly utilsService: UtilsService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly authService: AuthService
   ) {}
 
   ngOnInit(): void {}
@@ -28,5 +30,24 @@ export class SignInComponent implements OnInit {
     return this.user.email == '' || this.user.password == '';
   }
 
-  submit() {}
+  submit() {
+    this.authService.signIn(this.user).subscribe({
+      next: (value) => {
+        localStorage.setItem('refreshtoken', value.refreshToken);
+        this.generateAccesstoken();
+      },
+    });
+  }
+
+  generateAccesstoken() {
+    this.authService
+      .refreshToken(localStorage.getItem('refreshtoken')!)
+      .subscribe({
+        next: (value) => {
+          localStorage.setItem('accesstoken', value.accessToken);
+          this.utilsService.showSnackBarSucess('Realizou o login com sucesso!');
+          this.router.navigate(['/home']);
+        },
+      });
+  }
 }

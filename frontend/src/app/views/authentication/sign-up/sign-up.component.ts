@@ -40,8 +40,8 @@ export class SignUpComponent implements OnInit {
     }
 
     this.authService.signUp(this.user).subscribe({
-      next: this.success,
-      error: this.error,
+      next: (value) => this.success(value),
+      error: () => this.error(),
     });
   }
 

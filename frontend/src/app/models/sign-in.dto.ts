@@ -16,5 +16,5 @@ export interface SignInInputDto {
 }
 
 export interface SignInOutputDto {
-  refreshtoken: string;
+  refreshToken: string;
 }

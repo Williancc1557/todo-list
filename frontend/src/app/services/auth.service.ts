@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { SignUpInputDto, SignUpOutputDto } from '../models/sign-up.dto';
 import { Observable } from 'rxjs';
 import { SignInInputDto, SignInOutputDto } from '../models/sign-in.dto';
+import { RefreshTokenOutputDto } from '../models/refreshtoken.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +24,17 @@ export class AuthService {
     return this.http.post<SignInOutputDto>(
       this.baseUrl + '/api/auth/sign-in',
       data
+    );
+  }
+
+  public refreshToken(refreshtoken: string): Observable<RefreshTokenOutputDto> {
+    return this.http.get<RefreshTokenOutputDto>(
+      this.baseUrl + '/api/auth/refresh-token',
+      {
+        headers: {
+          refreshtoken,
+        },
+      }
     );
   }
 }
