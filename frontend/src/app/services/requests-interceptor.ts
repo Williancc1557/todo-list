@@ -25,7 +25,7 @@ export class RequestsInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     req = req.clone({
       setHeaders: {
-        accesstoken: localStorage.getItem('accesstoken')!,
+        accesstoken: localStorage.getItem('accesstoken') || '',
       },
     });
 
