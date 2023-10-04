@@ -22,40 +22,42 @@ export class RequestsInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const modifiedRequest = req.clone({
+    req = req.clone({
       setHeaders: {
-        accesstoken: localStorage.getItem('accesstoken') || '', // Use "Authorization" como nome do cabeçalho
+        accesstoken: localStorage.getItem('accesstoken')!,
       },
     });
 
-    return next.handle(modifiedRequest).pipe(
+    return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
-        if (error.status === 401) {
-          this.unauthorizedError(error);
+        switch (error.status) {
+          case 401:
+            this.unauthorizedError(next, req);
+            break;
         }
 
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
 
-  private unauthorizedError(error: HttpErrorResponse): Observable<never> {
+  private unauthorizedError(next: HttpHandler, req: HttpRequest<any>) {
     const refreshtoken = localStorage.getItem('refreshtoken');
     if (!refreshtoken) {
       this.router.navigate(['/auth/sign-in']);
-      return throwError(error);
+      return;
     }
 
     this.authService.refreshToken(refreshtoken).subscribe({
       next: (value) => {
         localStorage.setItem('accesstoken', value.accessToken);
+        next.handle(req);
       },
       error: () => {
         localStorage.removeItem('accesstoken');
         localStorage.removeItem('refreshtoken');
+        this.router.navigate(['/auth/sign-in']);
       },
     });
-
-    return throwError(error);
   }
 }

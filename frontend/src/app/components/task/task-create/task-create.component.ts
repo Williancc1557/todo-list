@@ -26,9 +26,14 @@ export class TaskCreateComponent implements OnInit {
       return this.taskService.showMessage('O nome da tarefa está inválido');
     }
 
-    this.taskService.create(this.task).subscribe(() => {
-      this.taskService.showMessage('Tarefa criada!');
-      this.router.navigate(['']);
+    this.taskService.create(this.task).subscribe({
+      next: () => {
+        this.taskService.showMessage('Tarefa criada!');
+        this.router.navigate(['']);
+      },
+      error: (err) => {
+        console.log(err);
+      },
     });
   }
 
