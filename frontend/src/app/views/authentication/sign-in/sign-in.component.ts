@@ -36,6 +36,7 @@ export class SignInComponent implements OnInit {
         localStorage.setItem('refreshtoken', value.refreshToken);
         this.generateAccesstoken();
       },
+      error: () => this.error(),
     });
   }
 
@@ -48,6 +49,13 @@ export class SignInComponent implements OnInit {
           this.utilsService.showSnackBarSucess('Realizou o login com sucesso!');
           this.router.navigate(['/home']);
         },
+        error: () => this.error(),
       });
+  }
+
+  error() {
+    this.utilsService.showSnackBarError(
+      'Ocorreu algum erro, tente novamente mais tarde!'
+    );
   }
 }
