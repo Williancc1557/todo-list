@@ -10,7 +10,7 @@ import { HeaderComponent } from './components/template/header/header.component';
 import { TodoCrudComponent } from './views/todo-crud/todo-crud.component';
 import { TaskReadComponent } from './components/task/task-read/task-read.component';
 import { MatTableModule } from '@angular/material/table';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TaskChangeComponent } from './components/task/task-change/task-change.component';
 import { MatCardModule } from '@angular/material/card';
@@ -28,6 +28,7 @@ import { SignUpComponent } from './views/authentication/sign-up/sign-up.componen
 import { LoadComponent } from './components/load/load.component';
 import { AuthComponent } from './views/authentication/auth.component';
 import { TodoListComponent } from './views/todo.component';
+import { RequestsInterceptor } from './services/requests-interceptor';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,13 @@ import { TodoListComponent } from './views/todo.component';
     FormsModule,
     MatInputModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestsInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -30,37 +30,6 @@ export class TaskService {
     });
   }
 
-  showSnackBarSucess(msg: string) {
-    return this.snackBar.open(msg, 'x', {
-      duration: 4000,
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
-      panelClass: 'snack-bar-sucess',
-    });
-  }
-
-  public showSnackBarError({ type, msg }: SnackBarErrorInput) {
-    const snackBarConfig: MatSnackBarConfig<any> = {
-      duration: 4000,
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
-      panelClass: ['snack-bar-error'],
-    };
-
-    let messageWithType: string | undefined;
-
-    switch (type) {
-      case 'inputUndefined':
-        messageWithType = 'Preencha todos os campos!';
-        break;
-      case 'internalError':
-        messageWithType = 'Ocorreu algum erro, tente novamente mais tarde!';
-        break;
-    }
-
-    return this.snackBar.open(messageWithType || msg!, 'x', snackBarConfig);
-  }
-
   create(task: Task): Observable<Task> {
     return this.http.post<Task>(this.baseUrl + '/save', task);
   }
