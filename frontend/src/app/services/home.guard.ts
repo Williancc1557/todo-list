@@ -17,11 +17,12 @@ export class HomeGuard implements CanActivate {
     state: RouterStateSnapshot
   ): boolean {
     const token = window.localStorage.getItem('accesstoken');
-    if (token) {
-      return true;
-    } else {
+
+    if (!token) {
       this.router.navigate(['auth/sign-in']);
       return false;
     }
+
+    return true;
   }
 }
