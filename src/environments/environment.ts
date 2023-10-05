@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  authService: 'http://localhost:8080',
+  taskService: 'http://localhost:3000',
 };
 
 /*

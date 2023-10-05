@@ -15,7 +15,7 @@ interface SnackBarErrorInput {
   providedIn: 'root',
 })
 export class TaskService {
-  baseUrl = 'http://localhost:3000';
+  baseUrl = 'https://todo-api-8hhv.onrender.com';
 
   constructor(
     private readonly snackBar: MatSnackBar,

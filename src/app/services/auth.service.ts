@@ -11,7 +11,7 @@ import { RefreshTokenOutputDto } from '../models/refreshtoken.dto';
 export class AuthService {
   constructor(private readonly http: HttpClient) {}
 
-  private baseUrl = 'http://localhost:8080';
+  private baseUrl = 'https://oauth-api-t0rr.onrender.com';
 
   public signUp(data: SignUpInputDto): Observable<SignUpOutputDto> {
     return this.http.post<SignUpOutputDto>(
