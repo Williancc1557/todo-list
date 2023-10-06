@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Task } from '../components/task.model';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { environment } from 'src/environments/environment';
 
 type snackBarErrorTypes = 'internalError' | 'inputUndefined';
 
@@ -15,7 +16,7 @@ interface SnackBarErrorInput {
   providedIn: 'root',
 })
 export class TaskService {
-  baseUrl = 'http://localhost:3000';
+  baseUrl = environment.baseUrlTodoApi;
 
   constructor(
     private readonly snackBar: MatSnackBar,

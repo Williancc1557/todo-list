@@ -4,6 +4,7 @@ import { SignUpInputDto, SignUpOutputDto } from '../models/sign-up.dto';
 import { Observable } from 'rxjs';
 import { SignInInputDto, SignInOutputDto } from '../models/sign-in.dto';
 import { RefreshTokenOutputDto } from '../models/refreshtoken.dto';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ import { RefreshTokenOutputDto } from '../models/refreshtoken.dto';
 export class AuthService {
   constructor(private readonly http: HttpClient) {}
 
-  private baseUrl = 'http://localhost:8080';
+  private baseUrl = environment.baseUrlAuth;
 
   public signUp(data: SignUpInputDto): Observable<SignUpOutputDto> {
     return this.http.post<SignUpOutputDto>(
