@@ -17,6 +17,7 @@ interface SnackBarErrorInput {
 })
 export class TaskService {
   baseUrl = environment.baseUrlTodoApi;
+  public isLoading = false;
 
   constructor(
     private readonly snackBar: MatSnackBar,

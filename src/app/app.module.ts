@@ -29,6 +29,7 @@ import { LoadComponent } from './components/load/load.component';
 import { AuthComponent } from './views/authentication/auth.component';
 import { TodoListComponent } from './views/todo.component';
 import { RequestsInterceptor } from './services/requests-interceptor';
+import { LoadingInterceptor } from './services/loading-interceptor';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,11 @@ import { RequestsInterceptor } from './services/requests-interceptor';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestsInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
       multi: true,
     },
   ],

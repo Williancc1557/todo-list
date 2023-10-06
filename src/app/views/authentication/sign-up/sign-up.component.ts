@@ -15,12 +15,11 @@ export class SignUpComponent implements OnInit {
     password: '',
     name: '',
   };
-  loading: boolean = false;
 
   public constructor(
     private readonly utilsService: UtilsService,
     private readonly router: Router,
-    private readonly authService: AuthService
+    public readonly authService: AuthService
   ) {}
 
   ngOnInit(): void {}

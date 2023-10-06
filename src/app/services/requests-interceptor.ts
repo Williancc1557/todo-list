@@ -7,7 +7,7 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, throwError, empty } from 'rxjs';
-import { catchError, switchMap } from 'rxjs/operators';
+import { catchError, finalize, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { RefreshTokenOutputDto } from '../models/refreshtoken.dto';
@@ -28,7 +28,6 @@ export class RequestsInterceptor implements HttpInterceptor {
         accesstoken: localStorage.getItem('accesstoken') || '',
       },
     });
-
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         switch (error.status) {

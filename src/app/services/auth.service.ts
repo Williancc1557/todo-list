@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
   constructor(private readonly http: HttpClient) {}
+  public isLoading = false;
 
   private baseUrl = environment.baseUrlAuth;
 

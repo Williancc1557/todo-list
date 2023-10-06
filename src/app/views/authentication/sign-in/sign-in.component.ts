@@ -21,7 +21,7 @@ export class SignInComponent implements OnInit {
   public constructor(
     private readonly utilsService: UtilsService,
     private readonly router: Router,
-    private readonly authService: AuthService
+    public readonly authService: AuthService
   ) {}
 
   ngOnInit(): void {}
