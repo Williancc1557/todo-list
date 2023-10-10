@@ -1,0 +1,60 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: "mongo:latest"
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=database
+      - MONGODB_DATA_DIR=/data/db
+      - MONDODB_LOG_DIR=/dev/null
+    volumes:
+      - mongo:/data/db
+    networks:
+      - todo_network
+
+  oauth_api:
+    build:
+      context: "../Oauth2.0"
+      dockerfile: Dockerfile
+    environment:
+      - PORT=8080
+      - MONGO_URL=mongodb://mongodb:27017/todo-list
+    container_name: oauth_todo_api
+    command: yarn dev
+    depends_on:
+      - mongodb
+    ports:
+      - "8080:8080"
+    volumes:
+      - oauth:/app/oauth2
+    networks:
+      - todo_network
+
+  todo_api:
+    environment:
+      - PORT=3000
+      - MONGO_URL=mongodb://mongodb:27017/todo-list
+    build:
+      context: "../todo-list-api"
+      dockerfile: Dockerfile
+    container_name: todo_api
+    command: yarn dev
+    depends_on:
+      - mongodb
+    ports:
+      - "3000:3000"
+    volumes:
+      - todo-api:/app/todo_api
+    networks:
+      - todo_network
+
+volumes:
+  mongo:
+  todo-api:
+  oauth:
+
+networks:
+  todo_network:
+    driver: bridge
