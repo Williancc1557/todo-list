@@ -21,7 +21,7 @@ services:
     environment:
       - PORT=8080
       - MONGO_URL=mongodb://mongodb:27017/todo-list
-    container_name: oauth_todo_api
+    container_name: oauth_todo_front
     command: yarn dev
     depends_on:
       - mongodb
@@ -39,7 +39,7 @@ services:
     build:
       context: "../todo-list-api"
       dockerfile: Dockerfile
-    container_name: todo_api
+    container_name: todo_api_front
     command: yarn dev
     depends_on:
       - mongodb
